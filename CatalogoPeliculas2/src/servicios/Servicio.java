@@ -37,6 +37,12 @@ public class Servicio implements IServicioPeliculas
         }
     }
 
+    @Override
+    public void eliminarPelicula(Pelicula pelicula)
+    {
+
+    }
+
 //    public static void main(String[] args)
 //    {
 //        // Objetos

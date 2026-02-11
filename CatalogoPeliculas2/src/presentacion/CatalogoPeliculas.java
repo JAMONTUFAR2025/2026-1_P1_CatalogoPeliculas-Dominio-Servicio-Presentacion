@@ -41,7 +41,8 @@ public class CatalogoPeliculas
                 1. Agregar peliculas
                 2. Listar peliculas
                 3. Buscar peliculas
-                4. Salir
+                4. Eliminar peliculas
+                5. Salir
                 """);
     } // Mostrar menu
 
@@ -71,9 +72,15 @@ public class CatalogoPeliculas
             } // 3
             case 4->
             {
+                System.out.println("Escribe el nombre de la pelicula a eliminar: ");
+                var eliminarPelicula = consola.nextLine();
+                servicioPeliculas.eliminarPelicula(new Pelicula(eliminarPelicula));
+            } // 4
+            case 5->
+            {
                 System.out.println("Has salido del programa");
                 salir = true;
-            } // 4
+            } // 5
             default->
             {
                 System.out.println("Opcion no valida...");
