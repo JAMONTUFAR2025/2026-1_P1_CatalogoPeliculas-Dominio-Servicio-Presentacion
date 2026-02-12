@@ -1,5 +1,6 @@
 package presentacion;
 
+import auditoria.Auditoria;
 import dominio.Pelicula;
 import servicios.IServicioPeliculas;
 import servicios.Servicio;
@@ -80,10 +81,12 @@ public class CatalogoPeliculas
             {
                 System.out.println("Has salido del programa");
                 salir = true;
+                Auditoria.registrarAccion("Se salio del programa");
             } // 5
             default->
             {
                 System.out.println("Opcion no valida...");
+                Auditoria.registrarAccion("Opcion no valida");
             } // default
         } // Opciones
 

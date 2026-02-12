@@ -1,5 +1,6 @@
 package servicios;
 
+import auditoria.Auditoria;
 import dominio.Pelicula;
 
 import java.io.*;
@@ -18,15 +19,18 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
             if(archivo.exists())
             {
                 System.out.println("Ya existe el archivo.");
+                Auditoria.registrarAccion("Inicio - Abrir archivo");
             }
             else
             {
                 var salida = new PrintWriter(new FileWriter(archivo));
+                Auditoria.registrarAccion("Inicio - Nuevo archivo");
             }
         }
         catch (IOException e)
         {
             System.out.println("Error con el archivo, mensaje: " + (e.getMessage()));
+            Auditoria.registrarAccion("Inicio - Error");
         }
     }
 
@@ -56,6 +60,8 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
                     linea = entrada.readLine();
                 }
 
+                Auditoria.registrarAccion("Listar peliculas - Exitoso");
+
                 // Cerrar archivo siempre no lo olvides
                 entrada.close();
             }
@@ -63,6 +69,7 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
         catch(Exception e)
         {
             System.out.println("Ocurrio un error: " + (e.getMessage()));
+            Auditoria.registrarAccion("Listar peliculas - Error");
         }
     }
 
@@ -83,6 +90,7 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
                 salida.println(pelicula);
 
                 System.out.println("Se agrego la pelicula " + pelicula + " al archivo.");
+                Auditoria.registrarAccion("Agregar pelicula - Exitoso");
 
                 salida.close();
             }
@@ -90,6 +98,7 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
         catch(Exception e)
         {
             System.out.println("Ocurrio un error: " + (e.getMessage()));
+            Auditoria.registrarAccion("Agregar pelicula - Error");
         }
     }
 
@@ -123,9 +132,15 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
                 } // while
 
                 if(encontrada)
+                {
                     System.out.println("Pelicula " + peliculaBuscar + " encontrada en el indice [" + indice + "]");
+                    Auditoria.registrarAccion("Buscar pelicula - Encontrada");
+                }
                 else
+                {
                     System.out.println("Pelicula " + peliculaBuscar + " no encontrada.");
+                    Auditoria.registrarAccion("Buscar pelicula - No encontrada");
+                }
 
                 entrada.close();
             }
@@ -133,6 +148,7 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
         catch(Exception e)
         {
             System.out.println("Error al abrir el archivo: " + (e.getMessage()));
+            Auditoria.registrarAccion("Buscar pelicula - Error");
         }
     }
 
@@ -171,6 +187,7 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
                     {
                         temporal.renameTo(original);
                         System.out.println("Pelicula " + pelicula + " eliminada.");
+                        Auditoria.registrarAccion("Eliminar pelicula - Encontrada");
                     }
                 }
                 else
@@ -178,12 +195,14 @@ public class ServicioPeliculasArchivos implements IServicioPeliculas
                     // Borramos el archivo temporal y no hacemos nada al no encontrar la pelicula a borrar
                     temporal.delete();
                     System.out.println("Pelicula " + pelicula + " no encontrada.");
+                    Auditoria.registrarAccion("Eliminar pelicula - No encontrada");
                 }
             }
         }
         catch(Exception e)
         {
             System.out.println("Error al procesar el archivo: " + e.getMessage());
+            Auditoria.registrarAccion("Eliminar pelicula - Error");
         }
     }
 }

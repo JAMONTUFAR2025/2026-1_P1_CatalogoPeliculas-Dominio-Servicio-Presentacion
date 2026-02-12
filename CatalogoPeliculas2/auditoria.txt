@@ -1,0 +1,10 @@
+[2026/02/12 14:13] ACCION: Inicio - Abrir archivo
+[2026/02/12 14:13] ACCION: Listar peliculas - Exitoso
+[2026/02/12 14:13] ACCION: Agregar pelicula - Exitoso
+[2026/02/12 14:13] ACCION: Listar peliculas - Exitoso
+[2026/02/12 14:13] ACCION: Buscar pelicula - Encontrada
+[2026/02/12 14:14] ACCION: Eliminar pelicula - Encontrada
+[2026/02/12 14:14] ACCION: Eliminar pelicula - No encontrada
+[2026/02/12 14:15] ACCION: Inicio - Abrir archivo
+[2026/02/12 14:15] ACCION: Opcion no valida
+[2026/02/12 14:15] ACCION: Se salio del programa

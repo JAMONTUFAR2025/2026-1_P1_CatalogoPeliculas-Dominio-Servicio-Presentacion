@@ -14,14 +14,14 @@ public class Auditoria
     {
         var archivo = new File(NOMBRE_ARCHIVO_LOG);
 
-        // Formato de fecha: dd/MM/yyyy HH:mm:ss
-        var formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        // Formato de fecha: yyyy/MM/dd HH:mm
+        var formato = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
         String fechaHora = LocalDateTime.now().format(formato);
 
         try
         {
             var salida = new PrintWriter(new FileWriter(archivo, true));
-            salida.println("[" + fechaHora + "] ACCIÓN: " + accion);
+            salida.println("[" + fechaHora + "] ACCION: " + accion);
             salida.close();
         }
         catch(Exception e)
